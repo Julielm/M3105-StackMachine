@@ -1,0 +1,11 @@
+window_sizes 1280 962 300 900 682 82
+show_stereotypes
+selected 
+  package_ref 129 // DiagrammeDeClasseTP1
+open
+  class_ref 128002 // CPU
+  class_ref 128130 // IO
+  class_ref 128258 // Machine
+  class_ref 128386 // MachineLauncher
+end
+end
