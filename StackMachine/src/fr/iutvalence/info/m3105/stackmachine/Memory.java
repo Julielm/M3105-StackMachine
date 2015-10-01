@@ -1,6 +1,24 @@
 package fr.iutvalence.info.m3105.stackmachine;
 
 public class Memory {
-	private String startAdress;
-	private String endAdress;
+	
+	private int startAddress;
+	private int endAddress;
+	
+	public Memory(int startAddress, int endAddress)
+	{
+		this.startAddress=startAddress;
+		this.endAddress=endAddress;
+	}
+
+	public int getStartAddress()
+	{
+		return this.startAddress;
+	}
+
+	public void write(int currentAddress, int opCode)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }
