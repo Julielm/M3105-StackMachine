@@ -49,22 +49,22 @@ public class MachineLauncher
 				};
 		Program program = new Program(instructions);
 		
-		Memory programMemory= null;
+		AbstractMemory programMemory= null;
 		Stack expStack = null;
 		Stack callStack = null;
 
 		try
 		{
-			programMemory = new Memory(0x00000000, 0x00000020);
-			expStack = new Stack(16);
-			callStack = new Stack(16);
+			programMemory = new Memory8bits(0x00000000, 0x00000020);
+			expStack = new Stack8bits(16);
+			callStack = new Stack8bits(16);
 		}
 		catch (InvalidParametersException e)
 		{
 			// Safely ignore this error, which is not one
 		}
 		
-		IO ioSystem = new IO(System.in, System.out, System.err);
+		IO ioSystem = new IOConsole(System.in, System.out, System.err);
 		CPU cpu = new CPU();		
 		Machine machine = new Machine(cpu, programMemory, expStack, callStack, ioSystem );
 		try

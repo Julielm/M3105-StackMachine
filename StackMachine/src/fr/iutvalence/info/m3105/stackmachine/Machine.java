@@ -3,9 +3,9 @@ package fr.iutvalence.info.m3105.stackmachine;
 public class Machine
 {
 	private CPU cpu;
-	private Memory programMemory;
+	private AbstractMemory programMemory;
 
-	public Machine(CPU cpu, Memory programMemory, Stack expStack, Stack callStack, IO ioSystem)
+	public Machine(CPU cpu, AbstractMemory programMemory, Stack expStack, Stack callStack, IO ioSystem)
 	{
 		super();
 		this.cpu = cpu;

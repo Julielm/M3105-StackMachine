@@ -1,11 +1,12 @@
 package fr.iutvalence.info.m3105.stackmachine;
 
-public class Memory {
-	
-	private int startAddress;
-	private int endAddress;
-	
-	public Memory(int startAddress, int endAddress)
+public class AbstractMemory implements
+{
+
+	protected int startAddress;
+	protected int endAddress;
+
+	public AbstractMemory(int startAddress, int endAddress)
 	{
 		this.startAddress=startAddress;
 		this.endAddress=endAddress;
@@ -21,4 +22,5 @@ public class Memory {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

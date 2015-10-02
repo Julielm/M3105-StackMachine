@@ -29,7 +29,7 @@ public class CPU
 	public final static int POP		= 0x15;
 	
 	private IO ioSystem;
-	private Memory programMemory;
+	private AbstractMemory programMemory;
 	private Stack callStack;
 	private Stack expStack;
 	// TODO something is missing here...
@@ -182,7 +182,7 @@ public class CPU
 		}		
 	}
 
-	public void wireToProgramMemory(Memory programMemory) {
+	public void wireToProgramMemory(AbstractMemory programMemory) {
 		this.programMemory=programMemory;
 		
 	}
