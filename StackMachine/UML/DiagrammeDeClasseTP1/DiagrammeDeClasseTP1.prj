@@ -1,7 +1,7 @@
 format 76
 "DiagrammeDeClasseTP1"
-  revision 4
-  modified_by 2 ""
+  revision 5
+  modified_by 2 "julie_000"
 
 
   
@@ -56,11 +56,11 @@ format 76
     show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128002 "TP1"
       draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_context default show_members_multiplicity yes show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility yes show_infonote default shadow default show_stereotype_properties default
-      size A3
+      size A2
     end
 
-    class 128002 "CPU"
-      visibility package 
+    class 128002 "AbstractCPU"
+      abstract visibility package 
       cpp_decl ""
       java_decl ""
       php_decl ""
@@ -68,16 +68,6 @@ format 76
       idl_decl ""
       explicit_switch_type ""
       
-      operation 128002 "run"
-	public explicit_return_type "void"
-	nparams 0
-	
-	
-	
-	
-	
-      end
-
       classrelation 128002 // <unidirectional association>
 	relation 128002 --->
 	  a role_name "" private
@@ -85,17 +75,17 @@ format 76
 	  b parent class_ref 128258 // Machine
       end
 
-      classrelation 129794 // programMemory (<unidirectional association>)
-	relation 128898 --->
-	  a role_name "programMemory" private
-	    classrelation_ref 129794 // programMemory (<unidirectional association>)
-	  b parent class_ref 128642 // Memory
+      classrelation 143746 // ioSystem (<unidirectional association>)
+	relation 142594 --->
+	  a role_name "ioSystem" private
+	    classrelation_ref 143746 // ioSystem (<unidirectional association>)
+	  b parent class_ref 141954 // IO
       end
 
       operation 135682 "wireToProgramMemory"
 	public explicit_return_type "void"
 	nparams 1
-	  param in name "programMemory" type class_ref 128642 // Memory
+	  param in name "programMemory" type class_ref 149122 // Memory
 	
 	
 	
@@ -103,10 +93,34 @@ format 76
 	
       end
 
-      operation 135810 "wireToExpStack"
+      classrelation 144002 // callStack (<unidirectional association>)
+	relation 142850 --->
+	  a role_name "callStack" private
+	    classrelation_ref 144002 // callStack (<unidirectional association>)
+	  b parent class_ref 142210 // Stack
+      end
+
+      classrelation 144130 // expStack (<unidirectional association>)
+	relation 142978 --->
+	  a role_name "expStack" private
+	    classrelation_ref 144130 // expStack (<unidirectional association>)
+	  b parent class_ref 142210 // Stack
+      end
+
+      operation 136322 "setPC"
 	public explicit_return_type "void"
 	nparams 1
-	  param in name "expStack" type class_ref 142210 // Stack
+	  param in name "address" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+
+      operation 136194 "clearStacks"
+	public explicit_return_type "void"
+	nparams 0
 	
 	
 	
@@ -125,6 +139,17 @@ format 76
 	
       end
 
+      operation 135810 "wireToExpStack"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "expStack" type class_ref 142210 // Stack
+	
+	
+	
+	
+	
+      end
+
       operation 136066 "wireToIoSubsystem"
 	public explicit_return_type "void"
 	nparams 1
@@ -136,46 +161,18 @@ format 76
 	
       end
 
-      operation 136194 "clearStacks"
-	public explicit_return_type "void"
-	nparams 0
-	
-	
-	
-	
-	
+      classrelation 151170 // programMemory (<unidirectional association>)
+	relation 150018 --->
+	  a role_name "programMemory" private
+	    classrelation_ref 151170 // programMemory (<unidirectional association>)
+	  b parent class_ref 149122 // Memory
       end
 
-      operation 136322 "setPC"
-	public explicit_return_type "void"
-	nparams 1
-	  param in name "address" explicit_type "int"
-	
-	
-	
-	
-	
-      end
-
-      classrelation 143746 // ioSystem (<unidirectional association>)
-	relation 142594 --->
-	  a role_name "ioSystem" private
-	    classrelation_ref 143746 // ioSystem (<unidirectional association>)
-	  b parent class_ref 141954 // IO
-      end
-
-      classrelation 144002 // callStack (<unidirectional association>)
-	relation 142850 --->
-	  a role_name "callStack" private
-	    classrelation_ref 144002 // callStack (<unidirectional association>)
-	  b parent class_ref 142210 // Stack
-      end
-
-      classrelation 144130 // expStack (<unidirectional association>)
-	relation 142978 --->
-	  a role_name "expStack" private
-	    classrelation_ref 144130 // expStack (<unidirectional association>)
-	  b parent class_ref 142210 // Stack
+      classrelation 151938 // <realization>
+	relation 150786 -_-|>
+	  a public
+	    classrelation_ref 151938 // <realization>
+	  b parent class_ref 149634 // CPU
       end
     end
 
@@ -248,8 +245,8 @@ format 76
       operation 128770 "Machine"
 	public explicit_return_type ""
 	nparams 5
-	  param in name "cpu" type class_ref 128002 // CPU
-	  param in name "programMemory" type class_ref 128642 // Memory
+	  param in name "cpu" type class_ref 149634 // CPU
+	  param in name "programMemory" type class_ref 149122 // Memory
 	  param in name "expStack" type class_ref 142210 // Stack
 	  param in name "callStack" type class_ref 142210 // Stack
 	  param in name "ioSystem" type class_ref 141954 // IO
@@ -284,18 +281,11 @@ format 76
 	
       end
 
-      classrelation 128258 // programMemory (<unidirectional association>)
-	relation 128130 --->
-	  a role_name "programMemory" private
-	    classrelation_ref 128258 // programMemory (<unidirectional association>)
-	  b parent class_ref 128642 // Memory
-      end
-
       classrelation 143362 // cpu (<unidirectional association>)
 	relation 142210 --->
 	  a role_name "cpu" private
 	    classrelation_ref 143362 // cpu (<unidirectional association>)
-	  b parent class_ref 128002 // CPU
+	  b parent class_ref 128002 // AbstractCPU
       end
 
       classrelation 143490 // <dependency>
@@ -303,6 +293,13 @@ format 76
 	  a default
 	    classrelation_ref 143490 // <dependency>
 	  b parent class_ref 135298 // Program
+      end
+
+      classrelation 151298 // programMemory (<unidirectional association>)
+	relation 150146 --->
+	  a role_name "programMemory" private
+	    classrelation_ref 151298 // programMemory (<unidirectional association>)
+	  b parent class_ref 149122 // Memory
       end
     end
 
@@ -341,8 +338,8 @@ format 76
       end
     end
 
-    class 128642 "Memory"
-      visibility package 
+    class 128642 "AbstractMemory"
+      abstract visibility package 
       cpp_decl ""
       java_decl ""
       php_decl ""
@@ -368,7 +365,7 @@ format 76
 	idl_decl ""
       end
 
-      operation 136706 "Memory"
+      operation 136706 "AbstractMemory"
 	public explicit_return_type ""
 	nparams 2
 	  param in name "startAddress" explicit_type "int"
@@ -380,16 +377,11 @@ format 76
 	
       end
 
-      operation 136834 "write"
-	public explicit_return_type "void"
-	nparams 2
-	  param in name "currentAddress" explicit_type "int"
-	  param in name "opCode" explicit_type "int"
-	
-	
-	
-	
-	
+      classrelation 151426 // <realization>
+	relation 150274 -_-|>
+	  a public
+	    classrelation_ref 151426 // <realization>
+	  b parent class_ref 149122 // Memory
       end
     end
 
@@ -416,6 +408,17 @@ format 76
 	  a public
 	    classrelation_ref 144386 // <generalisation>
 	  b parent class_ref 142338 // AbstractStack
+      end
+
+      operation 150274 "Stack8bits"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "size" explicit_type "int"
+	
+	
+	
+	
+	
       end
     end
 
@@ -559,7 +562,6 @@ ${members}};
 	
 	
       end
-
     end
 
     class 142082 "IOFile"
@@ -671,6 +673,17 @@ ${members}};
 	idl_decl ""
       end
 
+      operation 150402 "Stack16bits"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "size" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+
       classrelation 144514 // <generalisation>
 	relation 143362 ---|>
 	  a public
@@ -702,6 +715,139 @@ ${members}};
 	  a public
 	    classrelation_ref 144642 // <generalisation>
 	  b parent class_ref 142338 // AbstractStack
+      end
+
+      operation 150530 "Stack32bits"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "size" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 149122 "Memory"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 136834 "write"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "currentAddress" explicit_type "int"
+	  param in name "opCode" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 149250 "Memory8bits"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 151554 // <generalisation>
+	relation 150402 ---|>
+	  a public
+	    classrelation_ref 151554 // <generalisation>
+	  b parent class_ref 128642 // AbstractMemory
+      end
+    end
+
+    class 149378 "Memory16bits"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 151682 // <generalisation>
+	relation 150530 ---|>
+	  a public
+	    classrelation_ref 151682 // <generalisation>
+	  b parent class_ref 128642 // AbstractMemory
+      end
+    end
+
+    class 149506 "Memory32bits"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 151810 // <generalisation>
+	relation 150658 ---|>
+	  a public
+	    classrelation_ref 151810 // <generalisation>
+	  b parent class_ref 128642 // AbstractMemory
+      end
+    end
+
+    class 149634 "CPU"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 128002 "run"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 149762 "CPU1"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 152066 // <generalisation>
+	relation 150914 ---|>
+	  a public
+	    classrelation_ref 152066 // <generalisation>
+	  b parent class_ref 128002 // AbstractCPU
       end
     end
   end

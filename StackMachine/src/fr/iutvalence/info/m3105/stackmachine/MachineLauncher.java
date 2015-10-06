@@ -29,27 +29,27 @@ public class MachineLauncher
 		Instruction[] instructions = 
 				new Instruction[] 
 				{
-						new Instruction(CPU.IN, null),
-						new Instruction(CPU.CALL, new int[] {0x5}),
-						new Instruction(CPU.OUT, null),
-						new Instruction(CPU.HALT, null),
-						new Instruction(CPU.DUP, null),
-						new Instruction(CPU.JZ, new int[] {0xb}),
-						new Instruction(CPU.CALL, new int[] {0xf}),
-						new Instruction(CPU.RET, null),
-						new Instruction(CPU.POP, null),
-						new Instruction(CPU.PUSH, new int[] {0x1}),
-						new Instruction(CPU.RET, null),
-						new Instruction(CPU.DUP, null),
-						new Instruction(CPU.PUSH, new int[] {0x1}),
-						new Instruction(CPU.SUB, null),
-						new Instruction(CPU.CALL, new int[] {0x5}),
-						new Instruction(CPU.MUL, null),
-						new Instruction(CPU.RET, null)
+						new Instruction(CPU1.IN, null),
+						new Instruction(CPU1.CALL, new int[] {0x5}),
+						new Instruction(CPU1.OUT, null),
+						new Instruction(CPU1.HALT, null),
+						new Instruction(CPU1.DUP, null),
+						new Instruction(CPU1.JZ, new int[] {0xb}),
+						new Instruction(CPU1.CALL, new int[] {0xf}),
+						new Instruction(CPU1.RET, null),
+						new Instruction(CPU1.POP, null),
+						new Instruction(CPU1.PUSH, new int[] {0x1}),
+						new Instruction(CPU1.RET, null),
+						new Instruction(CPU1.DUP, null),
+						new Instruction(CPU1.PUSH, new int[] {0x1}),
+						new Instruction(CPU1.SUB, null),
+						new Instruction(CPU1.CALL, new int[] {0x5}),
+						new Instruction(CPU1.MUL, null),
+						new Instruction(CPU1.RET, null)
 				};
 		Program program = new Program(instructions);
 		
-		AbstractMemory programMemory= null;
+		Memory programMemory= null;
 		Stack expStack = null;
 		Stack callStack = null;
 
@@ -65,7 +65,7 @@ public class MachineLauncher
 		}
 		
 		IO ioSystem = new IOConsole(System.in, System.out, System.err);
-		CPU cpu = new CPU();		
+		CPU cpu = new CPU1();		
 		Machine machine = new Machine(cpu, programMemory, expStack, callStack, ioSystem );
 		try
 		{

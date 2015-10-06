@@ -6,4 +6,11 @@ public class Memory8bits extends AbstractMemory{
 	{
 		super(startAddress,endAddress);
 	}
+
+	@Override
+	public void write(int currentAddress, int opCode)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }
